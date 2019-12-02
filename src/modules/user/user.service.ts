@@ -6,7 +6,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UserService {
-	constructor(@InjectRepository(UserEntity) private readonly UserRepository: Repository<UserEntity>) { }
+	constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) { }
 
 	async createUser(data: CreateUserDto): Promise<UserEntity> {
 		try {
@@ -15,7 +15,7 @@ export class UserService {
 			user.username = data.username;
 			user.password = data.password;
 			user.email = data.email;
-		return	await this.UserRepository.save(user)
+		return	await this.userRepository.save(user)
 		} catch (error) {
 			return error
 		}		  

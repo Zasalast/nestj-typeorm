@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { ActivityEntity } from './activity.entity'
 
 @Entity('user')
 export class UserEntity {
@@ -15,4 +16,7 @@ export class UserEntity {
     
     @Column('varchar', { length: 500 , unique: true })
 	email: string
+
+	@OneToMany(type => ActivityEntity , activity => activity.author)
+	activities: ActivityEntity[];
 }
